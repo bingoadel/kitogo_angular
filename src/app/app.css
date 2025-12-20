@@ -1,0 +1,13 @@
+.mainframe{
+    background:whitesmoke
+}
+.headline{
+    font-size: 4em;
+    font-family: Arial;
+    color:purple;
+}
+.footer{
+    font-size: 1em;
+    font-family: Arial;
+    color:purple;
+}

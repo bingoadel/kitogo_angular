@@ -1,0 +1,83 @@
+<div class="container mt-5">
+    <h2>Registrierung</h2>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+        <!-- Username -->
+        <div class="form-group mb-3">
+            <label for="username">Benutzername</label>
+            <input type="text" id="username" formControlName="username" class="form-control" [class.is-invalid]="submitted && getControlsInForm['username'].invalid" />
+
+            @if (submitted && getControlsInForm['username'].errors) {
+            <div class="invalid-feedback">
+                @if (getControlsInForm['username'].errors['required']) {
+                <div>Benutzername ist erforderlich</div>
+                }
+                @if (getControlsInForm['username'].errors['minlength']) {
+                <div>Mindestens 3 Zeichen</div>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Email -->
+        <div class="form-group mb-3">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" formControlName="email" class="form-control" [class.is-invalid]="submitted && getControlsInForm['email'].invalid" />
+
+            @if (submitted && getControlsInForm['email'].errors) {
+            <div class="invalid-feedback">
+                @if (getControlsInForm['email'].errors['required']) {
+                <div>E-Mail ist erforderlich</div>
+                }
+                @if (getControlsInForm['email'].errors['email']) {
+                <div>Bitte gültige E-Mail eingeben</div>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Passwort -->
+        <div class="form-group mb-3">
+            <label for="password">Passwort</label>
+            <input type="password" id="password" formControlName="password" class="form-control" [class.is-invalid]="submitted && getControlsInForm['password'].invalid" />
+
+            @if (submitted && getControlsInForm['password'].errors) {
+            <div class="invalid-feedback">
+                @if (getControlsInForm['password'].errors['required']) {
+                <div>Passwort ist erforderlich</div>
+                }
+                @if (getControlsInForm['password'].errors['minlength']) {
+                <div>Mindestens 8 Zeichen</div>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Passwort bestätigen -->
+        <div class="form-group mb-3">
+            <label for="confirmPassword">Passwort bestätigen</label>
+            <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control" [class.is-invalid]="submitted && getControlsInForm['confirmPassword'].invalid" />
+
+            @if (submitted && getControlsInForm['confirmPassword'].errors) {
+            <div class="invalid-feedback">
+                @if (getControlsInForm['confirmPassword'].errors['required']) {
+                <div>Bestätigung ist erforderlich</div>
+                }
+                @if (registrationForm.errors?.['mismatch']) {
+                <div>Passwörter stimmen nicht überein</div>
+                }
+            </div>
+            }
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary">Registrieren</button>
+    </form>
+
+    @if (registrationSuccess) {
+    <div class="alert alert-success mt-3">
+        Registrierung erfolgreich 🎉
+    </div>
+    }
+</div>

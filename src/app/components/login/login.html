@@ -1,0 +1,56 @@
+<div class="container mt-5">
+    <h2>Login</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+
+        <!-- Passwort -->
+        <div class="form-group mb-3">
+            <label for="password">Passwort</label>
+            <input type="password" id="password" formControlName="password" class="form-control" [class.is-invalid]="submitted && getControlsInForm['email'].invalid"/>
+
+            @if (submitted && getControlsInForm['password'].errors) {
+            
+            <div class="invalid-feedback">
+
+                @if (getControlsInForm['password'].errors['required']) {
+                <div>Passwort ist erforderlich</div>
+                }
+                @if (getControlsInForm['password'].errors['minlength']) {
+                <div>Passwort muss mindestens 6 Zeichen haben</div>
+                }
+                
+            </div>
+            }
+        </div>
+        <!-- Email -->
+        <div class="form-group mb-3">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" formControlName="email" class="form-control" [class.is-invalid]="submitted && getControlsInForm['email'].invalid" />
+
+            @if (submitted && getControlsInForm['email'].errors) {
+            <div class="invalid-feedback">
+                @if (getControlsInForm['email'].errors['required']) {
+                <div>E-Mail ist erforderlich</div>
+                }
+                @if (getControlsInForm['email'].errors['email']) {
+                <div>Bitte gültige E-Mail eingeben</div>
+                }
+            </div>
+            }
+
+            
+        </div>
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <div>
+        <a routerLink="/registration">Noch nicht registriert ?</a>
+    </div>
+    @if (loginSuccess) {
+    <div class="alert alert-success mt-3">
+        Dummy-Login erfolgreich 🎉
+    </div>
+    }
+
+</div>
