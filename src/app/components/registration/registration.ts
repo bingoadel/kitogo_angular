@@ -24,7 +24,7 @@ export class Registration {
       username: ['', [Validators.required, Validators.minLength(3)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
-      confirmPassword: ['', [Validators.required]]
+      confirmpassword: ['', [Validators.required]]
     }, { validators: this.passwordMatchValidator });
   }
 
@@ -34,12 +34,14 @@ export class Registration {
 
   passwordMatchValidator(form: FormGroup) {
     const password = form.get('password')?.value;
-    const confirmPassword = form.get('confirmPassword')?.value;
-    return password === confirmPassword ? null : { mismatch: true };
+    const confirmpassword = form.get('confirmpassword')?.value;
+    return password === confirmpassword ? null : { mismatch: true };
   }
 
   onSubmit(): void {
+    
     this.submitted = true;
+    var regValid = this.registrationForm.valid;
     if (this.registrationForm.valid) {
       this.registrationSuccess = true;
       console.log('formale validierung erfolgreich:', this.registrationForm.value);
@@ -47,11 +49,16 @@ export class Registration {
     }
   }
   tryRegisterNewUser(): void {
+    
     var password = this.registrationForm.get('password')?.value;
     var email = this.registrationForm.get('email')?.value;
+    var confirmpassword = this.registrationForm.get('confirmpassword')?.value;
     var dtoRegistration = new RegistrationDto();
+    
     dtoRegistration.email = email;
     dtoRegistration.password = password;
+    dtoRegistration.repeatpassword = confirmpassword;
+    
     this.authService.registerUser(dtoRegistration).subscribe({
       next: response => {
         console.log('Registrierung erfolgreich:', response);

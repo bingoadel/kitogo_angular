@@ -56,12 +56,12 @@
 
         <!-- Passwort bestätigen -->
         <div class="form-group mb-3">
-            <label for="confirmPassword">Passwort bestätigen</label>
-            <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control" [class.is-invalid]="submitted && getControlsInForm['confirmPassword'].invalid" />
+            <label for="confirmpassword">Passwort bestätigen</label>
+            <input type="password" id="confirmpassword" formControlName="confirmpassword" class="form-control" [class.is-invalid]="submitted && getControlsInForm['confirmpassword'].invalid" />
 
-            @if (submitted && getControlsInForm['confirmPassword'].errors) {
+            @if (submitted && getControlsInForm['confirmpassword'].errors) {
             <div class="invalid-feedback">
-                @if (getControlsInForm['confirmPassword'].errors['required']) {
+                @if (getControlsInForm['confirmpassword'].errors['required']) {
                 <div>Bestätigung ist erforderlich</div>
                 }
                 @if (registrationForm.errors?.['mismatch']) {

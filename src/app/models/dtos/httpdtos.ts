@@ -5,4 +5,5 @@ export class LoginDto {
 export class RegistrationDto {
     email?: string = "";
     password?: string = "";
+    repeatpassword?:string = ""
 }
